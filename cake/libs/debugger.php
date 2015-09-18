@@ -67,7 +67,7 @@ class Debugger extends Object {
  * @var string
  * @access protected
  */
-	var $_outputFormat = 'js';
+	var $_outputFormat = 'fb';
 
 /**
  * Templates used when generating trace or error strings.  Can be global or indexed by the format
