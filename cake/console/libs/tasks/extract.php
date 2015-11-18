@@ -90,6 +90,8 @@ class ExtractTask extends Shell {
  */
 	var $__output = null;
 
+	var $files_to_exclude = array('vendors/tcpdf', 'vendors/phpexcel', 'vendors/fpdf153', 'vendors/aws-sdk', 'vendors/swift', 'config/sql', 'models/datasources');
+
 /**
  * Execution method always used for tasks
  *
@@ -219,8 +221,19 @@ class ExtractTask extends Shell {
  */
 	function __extractTokens() {
 		foreach ($this->__files as $file) {
+
+			$ignore_file = array_filter($this->files_to_exclude, function($el) use ($file) {
+				return ( strpos( $file, $el ) !== false );
+			});
+
+
+			if (!empty($ignore_file)) {
+				// $this->out(sprintf(__('Ignorando %s...', true), $file));
+				continue;
+			}
+
 			$this->__file = $file;
-			$this->out(sprintf(__('Processing %s...', true), $file));
+			// $this->out(sprintf(__('Processing %s...', true), $file));
 
 			$code = file_get_contents($file);
 			$allTokens = token_get_all($code);
@@ -331,7 +344,7 @@ class ExtractTask extends Shell {
 		}
 		return $strings;
 	}
-	
+
 /**
  * Build the translate template file contents out of obtained strings
  *
@@ -439,7 +452,7 @@ class ExtractTask extends Shell {
 		$output .= "\"Last-Translator: NAME <EMAIL@ADDRESS>\\n\"\n";
 		$output .= "\"Language-Team: LANGUAGE <EMAIL@ADDRESS>\\n\"\n";
 		$output .= "\"MIME-Version: 1.0\\n\"\n";
-		$output .= "\"Content-Type: text/plain; charset=utf-8\\n\"\n";
+		$output .= "\"Content-Type: text/plain; charset=ISO-8859-1\\n\"\n";
 		$output .= "\"Content-Transfer-Encoding: 8bit\\n\"\n";
 		$output .= "\"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\\n\"\n\n";
 		return $output;
