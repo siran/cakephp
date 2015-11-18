@@ -1095,7 +1095,7 @@ class Model extends Overloadable {
 
 		if ($data !== null && $data !== false) {
 			foreach ($this->schema() as $field => $properties) {
-				if ($this->primaryKey !== $field && isset($properties['default']) && $properties['default'] !== '') {
+				if ($this->primaryKey !== $field && isset($properties['default']) && $properties['default'] !== '' && substr($properties['default'],-2) != '()') {
 					$defaults[$field] = $properties['default'];
 				}
 			}

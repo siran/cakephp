@@ -818,6 +818,13 @@ class DboSource extends DataSource {
 		}
 
 		$query = $this->generateAssociationQuery($model, $null, null, null, null, $queryData, false, $null);
+		if (!empty($queryData['print_query']) && $print_query = $queryData['print_query']) {
+			if ($print_query === 'die') {
+				dd($query);
+			} else {
+				debug($query);
+			}
+		}
 
 		$resultSet = $this->fetchAll($query, $model->cacheQueries, $model->alias);
 
