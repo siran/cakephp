@@ -452,6 +452,7 @@ class EmailComponent extends Object{
  * @access private
  */
 	function _render($content) {
+		//$this->charset = 'utf-8';
 		$viewClass = $this->Controller->view;
 
 		if ($viewClass != 'View') {

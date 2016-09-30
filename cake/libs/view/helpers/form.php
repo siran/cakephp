@@ -815,6 +815,7 @@ class FormHelper extends AppHelper {
 		$autoLength = (!array_key_exists('maxlength', $options) && isset($fieldDef['length']));
 		if ($autoLength && $options['type'] == 'text') {
 			$options['maxlength'] = $fieldDef['length'];
+			//$options['size'] = $fieldDef['length'];
 		}
 		if ($autoLength && $fieldDef['type'] == 'float') {
 			$options['maxlength'] = array_sum(explode(',', $fieldDef['length']))+1;

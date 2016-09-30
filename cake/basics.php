@@ -130,7 +130,7 @@ if (!function_exists('clone')) {
 				echo '<strong>' . substr(str_replace(ROOT, '', $calledFrom[0]['file']), 1) . '</strong>';
 				echo ' (line <strong>' . $calledFrom[0]['line'] . '</strong>)';
 			}
-			echo "\n<pre class=\"cake-debug\">\n";
+			echo "\n<pre class=\"cake-debug\" style=\"white-space:pre-wrap;\">\n";
 
 			$var = print_r($var, true);
 			if ($showHtml) {

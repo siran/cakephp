@@ -1607,6 +1607,7 @@ class DboSource extends DataSource {
 		}
 		$query = compact('table', 'alias', 'joins', 'fields', 'conditions');
 
+		// var_dump($this->renderStatement('update', $query));
 		if (!$this->execute($this->renderStatement('update', $query))) {
 			$model->onError();
 			return false;
